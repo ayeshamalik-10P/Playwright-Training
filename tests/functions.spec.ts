@@ -4,16 +4,12 @@ import { BASE_URL } from '../../Fixtures/urlConstant';
 
 test('test', async ({ page }) => {
 
-  // Navigate to login page
   await navigateToLoginPage(page);
 
-  // Fill login form
   await fillLoginForm(page, USERNAME, PASSWORD);
 
-  // Submit login form
   await submitLoginForm(page);
 
-  // Verify successful login
   await verifySuccessfulLogin(page);
 
 });

@@ -1,7 +1,9 @@
 import { test, expect, Page } from '@playwright/test';
-const URL = 'https://practicetestautomation.com/practice-test-login/';
+import { USERNAME, PASSWORD } from '../Fixtures/constant';
+import { BASE_URL } from '../Fixtures/urlConstant';
+
 async function goToLoginPage(page: Page) {
-  await page.goto(URL);
+  await page.goto(BASE_URL);
 }
 async function fillUsername(page: Page, username: string) {
   await page.getByRole('textbox', { name: 'Username' }).fill(username);
@@ -32,24 +34,28 @@ async function assertErrorMessage(page: Page, expectedText: string) {
   await expect(error).toBeVisible();
   await expect(error).toHaveText(expectedText);
 }
+
 test.describe('Login Page', () => {
 
   test('Positive case with valid credentials', async ({ page }) => {
     await goToLoginPage(page);
     await assertFormVisible(page);
-    await login(page, 'student', 'Password123');
+    await login(page, USERNAME, PASSWORD);
     await assertLoginSuccess(page);
   });
+
   test('Negative case with invalid username', async ({ page }) => {
     await goToLoginPage(page);
     await assertFormVisible(page);
-    await login(page, 'incorrectUser', 'Password123');
+    await login(page, 'incorrectUser', PASSWORD);
     await assertErrorMessage(page, 'Your username is invalid!');
   });
+
   test('Negative case with invalid password', async ({ page }) => {
     await goToLoginPage(page);
     await assertFormVisible(page);
-    await login(page, 'student', 'incorrectPassword');
+    await login(page, USERNAME, 'incorrectPassword');
     await assertErrorMessage(page, 'Your password is invalid!');
   });
+
 });
