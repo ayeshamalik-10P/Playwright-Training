@@ -1,7 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 import { USERNAME, PASSWORD } from '../Fixtures/constant';
 import { BASE_URL } from '../Fixtures/urlConstant';
-
 async function goToLoginPage(page: Page) {
   await page.goto(BASE_URL);
 }
