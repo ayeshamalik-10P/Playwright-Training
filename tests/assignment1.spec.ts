@@ -12,7 +12,7 @@ test.describe('Login Page', () => {
     await expect(page.getByRole("button", { name: "Submit" })).toBeVisible();
 
     await page.getByRole("textbox", { name: "Username" }).fill("student");
-    await page.getByRole("textbox", { name: "Password" }).fill("Password123");
+    await page.getByRole("textbox", { name: "Passworgit initd" }).fill("Password123");
     await page.getByRole("button", { name: "Submit" }).click();
 
     await expect(page).toHaveURL(/practicetestautomation\.com\/logged-in-successfully/);
